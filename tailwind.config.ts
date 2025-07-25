@@ -87,18 +87,18 @@ export default {
 				},
 				'cyber-pulse': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px hsl(120 100% 50% / 0.3)'
+						boxShadow: '0 0 20px hsl(320 100% 70% / 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 30px hsl(120 100% 50% / 0.7)'
+						boxShadow: '0 0 30px hsl(320 100% 70% / 0.7)'
 					}
 				},
 				'cyber-glow': {
 					'0%, 100%': {
-						textShadow: '0 0 10px hsl(120 100% 50% / 0.8)'
+						textShadow: '0 0 10px hsl(320 100% 70% / 0.8)'
 					},
 					'50%': {
-						textShadow: '0 0 20px hsl(120 100% 50% / 1), 0 0 30px hsl(120 100% 50% / 0.8)'
+						textShadow: '0 0 20px hsl(320 100% 70% / 1), 0 0 30px hsl(320 100% 70% / 0.8)'
 					}
 				},
 				'fade-in-up': {

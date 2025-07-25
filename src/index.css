@@ -18,19 +18,19 @@
     --popover: 215 50% 6%;
     --popover-foreground: 180 100% 95%;
 
-    /* Neon green primary */
-    --primary: 120 100% 50%;
+    /* Neon pink primary */
+    --primary: 320 100% 70%;
     --primary-foreground: 210 50% 4%;
 
-    /* Dark purple secondary */
-    --secondary: 270 80% 25%;
+    /* Purple secondary */
+    --secondary: 280 100% 60%;
     --secondary-foreground: 180 100% 95%;
 
     --muted: 215 50% 8%;
     --muted-foreground: 180 30% 60%;
 
-    /* Neon purple accent */
-    --accent: 280 100% 70%;
+    /* Cyan accent */
+    --accent: 190 100% 60%;
     --accent-foreground: 210 50% 4%;
 
     /* Red for alerts */
@@ -39,26 +39,26 @@
 
     --border: 215 50% 15%;
     --input: 215 50% 8%;
-    --ring: 120 100% 50%;
+    --ring: 320 100% 70%;
 
     --radius: 0.75rem;
 
     /* Custom cyberpunk variables */
-    --neon-green: 120 100% 50%;
-    --neon-purple: 280 100% 70%;
+    --neon-pink: 320 100% 70%;
+    --neon-purple: 280 100% 60%;
     --neon-blue: 190 100% 60%;
     --dark-bg: 210 50% 4%;
     --dark-panel: 215 50% 6%;
     --dark-border: 215 50% 15%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(120 100% 50%), hsl(190 100% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(280 100% 70%), hsl(270 80% 25%));
-    --gradient-cyber: linear-gradient(45deg, hsl(120 100% 50% / 0.1), hsl(280 100% 70% / 0.1));
+    --gradient-primary: linear-gradient(135deg, hsl(320 100% 70%), hsl(190 100% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(280 100% 60%), hsl(320 100% 70%));
+    --gradient-cyber: linear-gradient(45deg, hsl(320 100% 70% / 0.1), hsl(280 100% 60% / 0.1));
     
     /* Shadows and glows */
-    --glow-green: 0 0 20px hsl(120 100% 50% / 0.5);
-    --glow-purple: 0 0 20px hsl(280 100% 70% / 0.5);
+    --glow-pink: 0 0 20px hsl(320 100% 70% / 0.5);
+    --glow-purple: 0 0 20px hsl(280 100% 60% / 0.5);
     --glow-blue: 0 0 20px hsl(190 100% 60% / 0.5);
     
     /* Animations */
@@ -143,24 +143,24 @@
   .cyber-panel {
     @apply bg-card border border-border rounded-lg p-6;
     background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-pink);
   }
 
   .neon-button {
     @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
     background: var(--gradient-primary);
     color: hsl(var(--primary-foreground));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-pink);
   }
 
   .neon-button:hover {
     transform: translateY(-2px);
-    box-shadow: var(--glow-green), 0 4px 20px rgba(0, 255, 127, 0.3);
+    box-shadow: var(--glow-pink), 0 4px 20px hsl(320 100% 70% / 0.3);
   }
 
   .neon-text {
     color: hsl(var(--primary));
-    text-shadow: var(--glow-green);
+    text-shadow: var(--glow-pink);
   }
 
   .hud-element {
@@ -176,7 +176,7 @@
   .cyber-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-pink);
   }
 
   .glow-effect {
