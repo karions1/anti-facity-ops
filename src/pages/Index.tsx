@@ -1,17 +1,24 @@
 import { useState } from 'react';
-import { HUD } from '@/components/HUD';
+import { useNavigate } from 'react-router-dom';
 import { Navigation, Section } from '@/components/Navigation';
 import { AgentProfile } from '@/components/AgentProfile';
 import { Dashboard } from '@/components/sections/Dashboard';
 import { HintsModal } from '@/components/modals/HintsModal';
 import { AISoldierModal } from '@/components/modals/AISoldierModal';
+import { AppSidebar } from '@/components/AppSidebar';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { Trophy, Timer, Target } from 'lucide-react';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<Section>('dashboard');
   const [showHints, setShowHints] = useState(false);
   const [showAISoldier, setShowAISoldier] = useState(false);
   const [points, setPoints] = useState(1250);
   const [missionProgress, setMissionProgress] = useState(67);
+  const [missionTime, setMissionTime] = useState("02:34:17");
   const teamName = "Cyber Phoenix";
 
   const renderContent = () => {
@@ -52,82 +59,122 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Cyber Background Effects */}
-      <div className="fixed inset-0 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-cyber-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-cyber-pulse" style={{ animationDelay: '1s' }} />
-      </div>
+    <SidebarProvider>
+      <div className="min-h-screen bg-background relative overflow-hidden w-full flex">
+        {/* Cyber Background Effects */}
+        <div className="fixed inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-cyber-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-cyber-pulse" style={{ animationDelay: '1s' }} />
+        </div>
 
-      {/* Grid Pattern Overlay */}
-      <div 
-        className="fixed inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(0, 255, 127, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 127, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
+        {/* Grid Pattern Overlay */}
+        <div 
+          className="fixed inset-0 opacity-5"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0, 255, 127, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 255, 127, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
 
-      {/* HUD */}
-      <HUD 
-        points={points} 
-        missionProgress={missionProgress} 
-        teamName={teamName} 
-      />
+        {/* Sidebar */}
+        <AppSidebar 
+          onHintsClick={() => setShowHints(true)}
+          onAISoldierClick={() => setShowAISoldier(true)}
+        />
 
-      {/* Navigation */}
-      <Navigation
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-        onHintsClick={() => setShowHints(true)}
-        onAISoldierClick={() => setShowAISoldier(true)}
-      />
-
-      {/* Main Content */}
-      <div className="pt-8 pb-8 px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold mb-4 animate-cyber-glow">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                ANTIFA
-              </span>
-            </h1>
-            <p className="text-xl text-muted-foreground">Secret Agency Operations Interface</p>
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col relative">
+          {/* Top HUD Bar */}
+          <div className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/95 backdrop-blur-lg relative z-10">
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="border border-border/50 hover:bg-muted/50" />
+              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+                <Target className="h-3 w-3 mr-1" />
+                {points} очков
+              </Badge>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-accent" />
+              <span className="text-accent font-mono text-lg">{missionTime}</span>
+            </div>
           </div>
 
-          {/* Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-8 items-start">
-            {/* Left Spacer */}
-            <div className="hidden lg:block" />
-
-            {/* Center Content */}
-            <div className="space-y-8">
+          {/* Content Area */}
+          <div className="flex-1 flex">
+            {/* Left Panel - Agent Profile */}
+            <div className="w-80 p-6 border-r border-border/50 bg-background/50 backdrop-blur-sm">
+              <div className="text-center mb-6">
+                <h1 className="text-3xl font-bold mb-2 animate-cyber-glow">
+                  <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                    ANTIFA
+                  </span>
+                </h1>
+                <p className="text-sm text-muted-foreground">Secret Agency</p>
+              </div>
+              
               <AgentProfile teamName={teamName} />
-              <div className="mt-12">
+            </div>
+
+            {/* Right Panel - Main Content */}
+            <div className="flex-1 p-6">
+              {/* Navigation */}
+              <div className="mb-6">
+                <Navigation
+                  activeSection={activeSection}
+                  onSectionChange={setActiveSection}
+                  onHintsClick={() => setShowHints(true)}
+                  onAISoldierClick={() => setShowAISoldier(true)}
+                />
+              </div>
+
+              {/* Content */}
+              <div className="max-w-4xl">
                 {renderContent()}
               </div>
             </div>
+          </div>
 
-            {/* Right Spacer */}
-            <div className="hidden lg:block" />
+          {/* Bottom HUD Bar */}
+          <div className="h-16 flex items-center justify-between px-6 border-t border-border/50 bg-background/95 backdrop-blur-lg">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Прогресс миссии:</span>
+                <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
+                    style={{ width: `${missionProgress}%` }}
+                  />
+                </div>
+                <span className="text-sm text-accent">{missionProgress}%</span>
+              </div>
+            </div>
+            
+            <Button
+              variant="outline"
+              onClick={() => navigate('/leaderboard')}
+              className="border-accent text-accent hover:bg-accent/20"
+            >
+              <Trophy className="h-4 w-4 mr-2" />
+              Рейтинг команд
+            </Button>
           </div>
         </div>
-      </div>
 
-      {/* Modals */}
-      <HintsModal 
-        open={showHints} 
-        onOpenChange={setShowHints} 
-      />
-      <AISoldierModal 
-        open={showAISoldier} 
-        onOpenChange={setShowAISoldier} 
-      />
-    </div>
+        {/* Modals */}
+        <HintsModal 
+          open={showHints} 
+          onOpenChange={setShowHints} 
+        />
+        <AISoldierModal 
+          open={showAISoldier} 
+          onOpenChange={setShowAISoldier} 
+        />
+      </div>
+    </SidebarProvider>
   );
 };
 
