@@ -29,8 +29,8 @@
     --muted: 215 50% 8%;
     --muted-foreground: 180 30% 60%;
 
-    /* Pink accent */
-    --accent: 320 100% 70%;
+    /* Blue accent */
+    --accent: 190 100% 60%;
     --accent-foreground: 210 50% 4%;
 
     /* Red for alerts */
@@ -46,21 +46,19 @@
     /* Custom cyberpunk variables */
     --neon-purple: 280 100% 60%;
     --neon-blue: 190 100% 60%;
-    --neon-pink: 320 100% 70%;
     --dark-bg: 210 50% 4%;
     --dark-panel: 215 50% 6%;
     --dark-border: 215 50% 15%;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(280 100% 60%), hsl(190 100% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(190 100% 60%), hsl(320 100% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(190 100% 60%), hsl(280 100% 60%));
     --gradient-cyber: linear-gradient(45deg, hsl(280 100% 60% / 0.1), hsl(190 100% 60% / 0.1));
-    --gradient-dashboard: linear-gradient(135deg, hsl(320 100% 70%), hsl(190 100% 60%));
+    --gradient-dashboard: linear-gradient(135deg, hsl(280 100% 60%), hsl(190 100% 60%));
     
     /* Shadows and glows */
     --glow-purple: 0 0 20px hsl(280 100% 60% / 0.5);
     --glow-blue: 0 0 20px hsl(190 100% 60% / 0.5);
-    --glow-pink: 0 0 20px hsl(320 100% 70% / 0.5);
     
     /* Animations */
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -106,8 +104,8 @@
     --muted: 215 50% 8%;
     --muted-foreground: 180 30% 60%;
 
-    /* Pink accent */
-    --accent: 320 100% 70%;
+    /* Blue accent */
+    --accent: 190 100% 60%;
     --accent-foreground: 210 50% 4%;
 
     --destructive: 0 100% 60%;

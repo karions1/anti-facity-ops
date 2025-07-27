@@ -32,7 +32,7 @@ export const Dashboard = () => {
       <div className="flex items-center gap-3 mb-6">
         <Target className="h-8 w-8 text-primary animate-cyber-glow" />
         <h2 className="text-3xl font-bold">
-          <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent animate-cyber-glow">
+          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-cyber-glow">
             Mission Control Dashboard
           </span>
         </h2>
