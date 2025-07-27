@@ -109,7 +109,7 @@ const Index = () => {
             <div className="w-80 p-6 border-r border-border/50 bg-background/50 backdrop-blur-sm">
               <div className="text-center mb-6">
                 <h1 className="text-3xl font-bold mb-2 animate-cyber-glow">
-                  <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  <span className="text-secondary animate-cyber-glow">
                     ANTIFA
                   </span>
                 </h1>
