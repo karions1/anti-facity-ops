@@ -22,24 +22,24 @@
     --primary: 260 55% 54%;
     --primary-foreground: 45 95% 95%;
 
-    /* Gold secondary */
-    --secondary: 45 95% 42%;
+    /* Pink secondary */
+    --secondary: 332 98% 50%;
     --secondary-foreground: 260 55% 10%;
 
     --muted: 215 50% 8%;
     --muted-foreground: 260 30% 70%;
 
-    /* Gold accent */
-    --accent: 45 95% 42%;
+    /* Pink accent */
+    --accent: 332 98% 50%;
     --accent-foreground: 260 55% 10%;
 
     /* Red for alerts */
     --destructive: 0 100% 60%;
     --destructive-foreground: 180 100% 95%;
 
-    --border: 45 95% 42%;
+    --border: 332 98% 50%;
     --input: 215 50% 8%;
-    --ring: 45 95% 42%;
+    --ring: 332 98% 50%;
 
     --radius: 0.75rem;
 
@@ -51,14 +51,14 @@
     --dark-border: 215 50% 15%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(260 55% 54%), hsl(45 95% 42%));
-    --gradient-secondary: linear-gradient(135deg, hsl(45 95% 42%), hsl(260 55% 54%));
-    --gradient-cyber: linear-gradient(45deg, hsl(260 55% 54% / 0.1), hsl(45 95% 42% / 0.1));
-    --gradient-dashboard: linear-gradient(135deg, hsl(260 55% 54%), hsl(45 95% 42%));
+    --gradient-primary: linear-gradient(135deg, hsl(260 55% 54%), hsl(332 98% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(332 98% 50%), hsl(260 55% 54%));
+    --gradient-cyber: linear-gradient(45deg, hsl(260 55% 54% / 0.1), hsl(332 98% 50% / 0.1));
+    --gradient-dashboard: linear-gradient(135deg, hsl(260 55% 54%), hsl(332 98% 50%));
     
     /* Shadows and glows */
     --glow-purple: 0 0 20px hsl(260 55% 54% / 0.4);
-    --glow-gold: 0 0 20px hsl(45 95% 42% / 0.4);
+    --glow-pink: 0 0 20px hsl(332 98% 50% / 0.4);
     
     /* Animations */
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -97,23 +97,23 @@
     --primary: 260 55% 54%;
     --primary-foreground: 45 95% 95%;
 
-    /* Gold secondary */
-    --secondary: 45 95% 42%;
+    /* Pink secondary */
+    --secondary: 332 98% 50%;
     --secondary-foreground: 260 55% 10%;
 
     --muted: 215 50% 8%;
     --muted-foreground: 260 30% 70%;
 
-    /* Gold accent */
-    --accent: 45 95% 42%;
+    /* Pink accent */
+    --accent: 332 98% 50%;
     --accent-foreground: 260 55% 10%;
 
     --destructive: 0 100% 60%;
     --destructive-foreground: 180 100% 95%;
 
-    --border: 45 95% 42%;
+    --border: 332 98% 50%;
     --input: 215 50% 8%;
-    --ring: 45 95% 42%;
+    --ring: 332 98% 50%;
     
     --sidebar-background: 210 50% 4%;
     --sidebar-foreground: 180 100% 95%;
@@ -121,8 +121,8 @@
     --sidebar-primary-foreground: 45 95% 95%;
     --sidebar-accent: 215 50% 8%;
     --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 45 95% 42%;
-    --sidebar-ring: 45 95% 42%;
+    --sidebar-border: 332 98% 50%;
+    --sidebar-ring: 332 98% 50%;
   }
 }
 
@@ -179,7 +179,7 @@
   .cyber-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: var(--glow-gold);
+    box-shadow: var(--glow-pink);
   }
 
   .glow-effect {
