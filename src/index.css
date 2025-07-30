@@ -18,28 +18,28 @@
     --popover: 215 50% 6%;
     --popover-foreground: 180 100% 95%;
 
-    /* Dark green primary */
-    --primary: 120 60% 50%;
-    --primary-foreground: 210 50% 4%;
+    /* Purple primary */
+    --primary: 260 55% 54%;
+    --primary-foreground: 45 95% 95%;
 
-    /* Light green secondary */
-    --secondary: 140 50% 60%;
-    --secondary-foreground: 210 50% 4%;
+    /* Gold secondary */
+    --secondary: 45 95% 42%;
+    --secondary-foreground: 260 55% 10%;
 
     --muted: 215 50% 8%;
-    --muted-foreground: 120 20% 60%;
+    --muted-foreground: 260 30% 70%;
 
-    /* Matrix green accent */
-    --accent: 120 80% 45%;
-    --accent-foreground: 210 50% 4%;
+    /* Gold accent */
+    --accent: 45 95% 42%;
+    --accent-foreground: 260 55% 10%;
 
     /* Red for alerts */
     --destructive: 0 100% 60%;
     --destructive-foreground: 180 100% 95%;
 
-    --border: 215 50% 15%;
+    --border: 45 95% 42%;
     --input: 215 50% 8%;
-    --ring: 120 60% 50%;
+    --ring: 45 95% 42%;
 
     --radius: 0.75rem;
 
@@ -51,14 +51,14 @@
     --dark-border: 215 50% 15%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(120 60% 50%), hsl(140 50% 60%));
-    --gradient-secondary: linear-gradient(135deg, hsl(140 50% 60%), hsl(120 60% 50%));
-    --gradient-cyber: linear-gradient(45deg, hsl(120 60% 50% / 0.1), hsl(140 50% 60% / 0.1));
-    --gradient-dashboard: linear-gradient(135deg, hsl(120 60% 50%), hsl(140 50% 60%));
+    --gradient-primary: linear-gradient(135deg, hsl(260 55% 54%), hsl(45 95% 42%));
+    --gradient-secondary: linear-gradient(135deg, hsl(45 95% 42%), hsl(260 55% 54%));
+    --gradient-cyber: linear-gradient(45deg, hsl(260 55% 54% / 0.1), hsl(45 95% 42% / 0.1));
+    --gradient-dashboard: linear-gradient(135deg, hsl(260 55% 54%), hsl(45 95% 42%));
     
     /* Shadows and glows */
-    --glow-green: 0 0 20px hsl(120 60% 50% / 0.4);
-    --glow-terminal: 0 0 20px hsl(140 50% 60% / 0.4);
+    --glow-purple: 0 0 20px hsl(260 55% 54% / 0.4);
+    --glow-gold: 0 0 20px hsl(45 95% 42% / 0.4);
     
     /* Animations */
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -93,36 +93,36 @@
     --popover: 215 50% 6%;
     --popover-foreground: 180 100% 95%;
 
-    /* Dark green primary */
-    --primary: 120 60% 50%;
-    --primary-foreground: 210 50% 4%;
+    /* Purple primary */
+    --primary: 260 55% 54%;
+    --primary-foreground: 45 95% 95%;
 
-    /* Light green secondary */
-    --secondary: 140 50% 60%;
-    --secondary-foreground: 210 50% 4%;
+    /* Gold secondary */
+    --secondary: 45 95% 42%;
+    --secondary-foreground: 260 55% 10%;
 
     --muted: 215 50% 8%;
-    --muted-foreground: 120 20% 60%;
+    --muted-foreground: 260 30% 70%;
 
-    /* Matrix green accent */
-    --accent: 120 80% 45%;
-    --accent-foreground: 210 50% 4%;
+    /* Gold accent */
+    --accent: 45 95% 42%;
+    --accent-foreground: 260 55% 10%;
 
     --destructive: 0 100% 60%;
     --destructive-foreground: 180 100% 95%;
 
-    --border: 215 50% 15%;
+    --border: 45 95% 42%;
     --input: 215 50% 8%;
-    --ring: 120 60% 50%;
+    --ring: 45 95% 42%;
     
     --sidebar-background: 210 50% 4%;
     --sidebar-foreground: 180 100% 95%;
-    --sidebar-primary: 120 60% 50%;
-    --sidebar-primary-foreground: 210 50% 4%;
+    --sidebar-primary: 260 55% 54%;
+    --sidebar-primary-foreground: 45 95% 95%;
     --sidebar-accent: 215 50% 8%;
     --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 215 50% 15%;
-    --sidebar-ring: 120 60% 50%;
+    --sidebar-border: 45 95% 42%;
+    --sidebar-ring: 45 95% 42%;
   }
 }
 
@@ -146,24 +146,24 @@
   .cyber-panel {
     @apply bg-card border border-border rounded-lg p-6;
     background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-purple);
   }
 
   .neon-button {
     @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
     background: var(--gradient-primary);
     color: hsl(var(--primary-foreground));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-purple);
   }
 
   .neon-button:hover {
     transform: translateY(-2px);
-    box-shadow: var(--glow-green), 0 4px 20px hsl(120 60% 50% / 0.3);
+    box-shadow: var(--glow-purple), 0 4px 20px hsl(260 55% 54% / 0.3);
   }
 
   .neon-text {
     color: hsl(var(--primary));
-    text-shadow: var(--glow-green);
+    text-shadow: var(--glow-purple);
   }
 
   .hud-element {
@@ -179,7 +179,7 @@
   .cyber-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: var(--glow-green);
+    box-shadow: var(--glow-gold);
   }
 
   .glow-effect {
