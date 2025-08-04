@@ -61,32 +61,36 @@ const Index = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-background relative overflow-hidden w-full flex">
+        {/* Matrix Background */}
+        <div className="fixed inset-0 z-0">
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'url(/matrix-rain.gif)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-card/90" />
+        </div>
+
         {/* Cyber Background Effects */}
-        <div className="fixed inset-0 opacity-10">
+        <div className="fixed inset-0 opacity-10 z-1">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-cyber-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-cyber-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
-        {/* Grid Pattern Overlay */}
-        <div 
-          className="fixed inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(0, 255, 127, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 255, 127, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-        />
-
         {/* Sidebar */}
-        <AppSidebar 
-          onHintsClick={() => setShowHints(true)}
-          onAISoldierClick={() => setShowAISoldier(true)}
-        />
+        <div className="relative z-10">
+          <AppSidebar 
+            onHintsClick={() => setShowHints(true)}
+            onAISoldierClick={() => setShowAISoldier(true)}
+          />
+        </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col relative">
+        <div className="flex-1 flex flex-col relative z-10">
           {/* Top HUD Bar */}
           <div className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/95 backdrop-blur-lg relative z-10">
             <div className="flex items-center gap-4">
