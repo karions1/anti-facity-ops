@@ -64,15 +64,15 @@ const Index = () => {
         {/* Matrix Background */}
         <div className="fixed inset-0 z-0">
           <div 
-            className="absolute inset-0 opacity-20"
+            className="absolute inset-0 opacity-30"
             style={{
-              backgroundImage: 'url(/matrix-rain.gif)',
+              backgroundImage: 'url(/secret-agent-bg.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-card/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/85 via-background/75 to-card/85" />
         </div>
 
         {/* Cyber Background Effects */}
