@@ -10,36 +10,36 @@
   :root {
     /* Dark cyberpunk theme */
     --background: 210 50% 4%;
-    --foreground: 180 100% 95%;
+    --foreground: 0 0% 85%;
 
     --card: 215 50% 6%;
-    --card-foreground: 180 100% 95%;
+    --card-foreground: 0 0% 85%;
 
     --popover: 215 50% 6%;
-    --popover-foreground: 180 100% 95%;
+    --popover-foreground: 0 0% 85%;
 
-    /* Purple primary */
-    --primary: 260 55% 54%;
-    --primary-foreground: 45 95% 95%;
+    /* Dark red primary (Antifa colors) */
+    --primary: 0 70% 35%;
+    --primary-foreground: 0 0% 85%;
 
-    /* Pink secondary */
-    --secondary: 332 98% 50%;
-    --secondary-foreground: 260 55% 10%;
+    /* Black secondary */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 85%;
 
     --muted: 215 50% 8%;
-    --muted-foreground: 260 30% 70%;
+    --muted-foreground: 0 0% 65%;
 
-    /* Pink accent */
-    --accent: 332 98% 50%;
-    --accent-foreground: 260 55% 10%;
+    /* Red accent */
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 0% 85%;
 
-    /* Red for alerts */
-    --destructive: 0 100% 60%;
-    --destructive-foreground: 180 100% 95%;
+    /* Bright red for alerts */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 85%;
 
-    --border: 332 98% 50%;
+    --border: 0 70% 35%;
     --input: 215 50% 8%;
-    --ring: 332 98% 50%;
+    --ring: 0 70% 35%;
 
     --radius: 0.75rem;
 
@@ -51,14 +51,14 @@
     --dark-border: 215 50% 15%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(260 55% 54%), hsl(332 98% 50%));
-    --gradient-secondary: linear-gradient(135deg, hsl(332 98% 50%), hsl(260 55% 54%));
-    --gradient-cyber: linear-gradient(45deg, hsl(260 55% 54% / 0.1), hsl(332 98% 50% / 0.1));
-    --gradient-dashboard: linear-gradient(135deg, hsl(260 55% 54%), hsl(332 98% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(0 70% 35%), hsl(0 0% 15%));
+    --gradient-secondary: linear-gradient(135deg, hsl(0 0% 15%), hsl(0 70% 35%));
+    --gradient-cyber: linear-gradient(45deg, hsl(0 70% 35% / 0.1), hsl(0 0% 15% / 0.1));
+    --gradient-dashboard: linear-gradient(135deg, hsl(0 70% 35%), hsl(0 0% 15%));
     
     /* Shadows and glows */
-    --glow-purple: 0 0 20px hsl(260 55% 54% / 0.4);
-    --glow-pink: 0 0 20px hsl(332 98% 50% / 0.4);
+    --glow-red: 0 0 20px hsl(0 70% 35% / 0.4);
+    --glow-dark: 0 0 20px hsl(0 0% 15% / 0.4);
     
     /* Animations */
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,7 +72,7 @@
 
     --sidebar-primary: 240 5.9% 10%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 85%;
 
     --sidebar-accent: 240 4.8% 95.9%;
 
@@ -85,44 +85,44 @@
 
   .dark {
     --background: 210 50% 4%;
-    --foreground: 180 100% 95%;
+    --foreground: 0 0% 85%;
 
     --card: 215 50% 6%;
-    --card-foreground: 180 100% 95%;
+    --card-foreground: 0 0% 85%;
 
     --popover: 215 50% 6%;
-    --popover-foreground: 180 100% 95%;
+    --popover-foreground: 0 0% 85%;
 
-    /* Purple primary */
-    --primary: 260 55% 54%;
-    --primary-foreground: 45 95% 95%;
+    /* Dark red primary */
+    --primary: 0 70% 35%;
+    --primary-foreground: 0 0% 85%;
 
-    /* Pink secondary */
-    --secondary: 332 98% 50%;
-    --secondary-foreground: 260 55% 10%;
+    /* Black secondary */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 85%;
 
     --muted: 215 50% 8%;
-    --muted-foreground: 260 30% 70%;
+    --muted-foreground: 0 0% 65%;
 
-    /* Pink accent */
-    --accent: 332 98% 50%;
-    --accent-foreground: 260 55% 10%;
+    /* Red accent */
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 0% 85%;
 
-    --destructive: 0 100% 60%;
-    --destructive-foreground: 180 100% 95%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 85%;
 
-    --border: 332 98% 50%;
+    --border: 0 70% 35%;
     --input: 215 50% 8%;
-    --ring: 332 98% 50%;
+    --ring: 0 70% 35%;
     
     --sidebar-background: 210 50% 4%;
-    --sidebar-foreground: 180 100% 95%;
-    --sidebar-primary: 260 55% 54%;
-    --sidebar-primary-foreground: 45 95% 95%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 0 70% 35%;
+    --sidebar-primary-foreground: 0 0% 85%;
     --sidebar-accent: 215 50% 8%;
-    --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 332 98% 50%;
-    --sidebar-ring: 332 98% 50%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 0 70% 35%;
+    --sidebar-ring: 0 70% 35%;
   }
 }
 
@@ -146,24 +146,24 @@
   .cyber-panel {
     @apply bg-card border border-border rounded-lg p-6;
     background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--muted)));
-    box-shadow: var(--glow-purple);
+    box-shadow: var(--glow-red);
   }
 
   .neon-button {
     @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
     background: var(--gradient-primary);
     color: hsl(var(--primary-foreground));
-    box-shadow: var(--glow-purple);
+    box-shadow: var(--glow-red);
   }
 
   .neon-button:hover {
     transform: translateY(-2px);
-    box-shadow: var(--glow-purple), 0 4px 20px hsl(260 55% 54% / 0.3);
+    box-shadow: var(--glow-red), 0 4px 20px hsl(0 70% 35% / 0.3);
   }
 
   .neon-text {
     color: hsl(var(--primary));
-    text-shadow: var(--glow-purple);
+    text-shadow: var(--glow-red);
   }
 
   .hud-element {
@@ -179,7 +179,7 @@
   .cyber-input:focus {
     outline: none;
     border-color: hsl(var(--primary));
-    box-shadow: var(--glow-pink);
+    box-shadow: var(--glow-red);
   }
 
   .glow-effect {
