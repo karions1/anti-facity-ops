@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Navigation, Section } from '@/components/Navigation';
 import { AgentProfile } from '@/components/AgentProfile';
 import { Dashboard } from '@/components/sections/Dashboard';
+import { Calls } from '@/components/sections/Calls';
+import { Files } from '@/components/sections/Files';
 import { HintsModal } from '@/components/modals/HintsModal';
 import { AISoldierModal } from '@/components/modals/AISoldierModal';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -27,19 +29,9 @@ const Index = () => {
       case 'dashboard':
         return <Dashboard />;
       case 'calls':
-        return (
-          <div className="cyber-panel max-w-2xl mx-auto animate-fade-in-up">
-            <h2 className="text-3xl font-bold neon-text mb-6">Calls Section</h2>
-            <p className="text-muted-foreground">Раздел звонков в разработке...</p>
-          </div>
-        );
+        return <Calls />;
       case 'files':
-        return (
-          <div className="cyber-panel max-w-2xl mx-auto animate-fade-in-up">
-            <h2 className="text-3xl font-bold neon-text mb-6">Files Section</h2>
-            <p className="text-muted-foreground">Раздел файлов в разработке...</p>
-          </div>
-        );
+        return <Files />;
       case 'databases':
         return (
           <div className="cyber-panel max-w-2xl mx-auto animate-fade-in-up">
