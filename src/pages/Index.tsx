@@ -6,6 +6,7 @@ import { Dashboard } from '@/components/sections/Dashboard';
 import { HintsModal } from '@/components/modals/HintsModal';
 import { AISoldierModal } from '@/components/modals/AISoldierModal';
 import { AppSidebar } from '@/components/AppSidebar';
+import { AppHeader } from '@/components/AppHeader';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
@@ -61,6 +62,7 @@ const Index = () => {
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-background relative overflow-hidden w-full flex">
+        <AppHeader />
         {/* Matrix Background */}
         <div className="fixed inset-0 z-0">
           <div 
@@ -92,7 +94,7 @@ const Index = () => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col relative z-10">
           {/* Top HUD Bar */}
-          <div className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/95 backdrop-blur-lg relative z-10">
+          <div className="h-16 flex items-center justify-between px-6 border-b border-border/50 bg-background/95 backdrop-blur-lg relative z-10 mt-16">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="border border-border/50 hover:bg-muted/50" />
               <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">

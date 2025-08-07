@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Shield } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { AppHeader } from '@/components/AppHeader';
 import aegisLogo from '@/assets/aegis-logo.png';
 
 const Login = () => {
@@ -31,6 +32,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden w-full flex items-center justify-center">
+      <AppHeader />
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <div 
@@ -52,7 +54,7 @@ const Login = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-md mx-auto p-8">
+      <div className="relative z-10 w-full max-w-md mx-auto p-8 mt-16">
         <div className="cyber-panel text-center space-y-8">
           {/* Logo and Title */}
           <div className="space-y-4">
