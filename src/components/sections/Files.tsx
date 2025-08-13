@@ -329,34 +329,37 @@ export const Files = () => {
   };
 
   const FileCard = ({ file }: { file: MediaFile }) => (
-    <Card className="bg-muted/20 border-border/50 hover:bg-muted/30 transition-all duration-300">
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+    <Card className="bg-muted/20 border-border/50 hover:bg-muted/30 transition-all duration-300 h-full">
+      <CardContent className="p-4 h-full">
+        <div className="flex flex-col h-full">
+          <div className="flex items-center gap-3 mb-3">
             <div className="p-2 rounded-lg bg-primary/20 border border-primary/30">
               {getFileIcon(file.type)}
             </div>
             
             <div className="flex-1">
-              <h3 className="font-semibold text-foreground truncate max-w-64">{file.name}</h3>
-              <p className="text-sm text-muted-foreground">{file.description}</p>
-              <div className="flex items-center gap-4 mt-1">
-                <span className="text-xs text-muted-foreground">{file.size}</span>
-                <span className="text-xs text-muted-foreground">
-                  {new Date(file.uploadDate).toLocaleDateString('ru-RU')}
-                </span>
-              </div>
+              <h3 className="font-semibold text-foreground text-sm leading-tight">{file.name}</h3>
+            </div>
+          </div>
+          
+          <div className="flex-1 mb-3">
+            <p className="text-xs text-muted-foreground mb-2 line-clamp-2">{file.description}</p>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs text-muted-foreground">{file.size}</span>
+              <span className="text-xs text-muted-foreground">
+                {new Date(file.uploadDate).toLocaleDateString('ru-RU')}
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-2">
             {file.type === 'video' && (
               <Dialog>
                 <DialogTrigger asChild>
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20 w-full text-xs"
                   >
                     <Play className="h-3 w-3" />
                     Воспроизвести
@@ -392,7 +395,7 @@ export const Files = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20 w-full text-xs"
                   >
                     <Eye className="h-3 w-3" />
                     Просмотр
@@ -420,7 +423,7 @@ export const Files = () => {
             <Button 
               variant="outline" 
               size="sm"
-              className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+              className="gap-2 border-primary/30 text-primary hover:bg-primary/20 w-full text-xs"
               onClick={() => window.open(file.url, '_blank')}
             >
               <Download className="h-3 w-3" />
@@ -466,14 +469,16 @@ export const Files = () => {
           </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="media" className="space-y-3 mt-6">
+        <TabsContent value="media" className="mt-6">
           <div className="flex items-center gap-2 mb-4">
             <FileText className="h-4 w-4 text-primary" />
             <span className="text-sm text-primary">Архив документов, видео и изображений</span>
           </div>
-          {mediaFiles.map((file) => (
-            <FileCard key={file.id} file={file} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {mediaFiles.map((file) => (
+              <FileCard key={file.id} file={file} />
+            ))}
+          </div>
         </TabsContent>
         
         <TabsContent value="private" className="space-y-3 mt-6">
