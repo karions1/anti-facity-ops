@@ -5,6 +5,8 @@ import { AgentProfile } from '@/components/AgentProfile';
 import { Dashboard } from '@/components/sections/Dashboard';
 import { Calls } from '@/components/sections/Calls';
 import { Files } from '@/components/sections/Files';
+import Databases from '@/components/sections/Databases';
+import Tools from '@/components/sections/Tools';
 import { HintsModal } from '@/components/modals/HintsModal';
 import { AISoldierModal } from '@/components/modals/AISoldierModal';
 import { AppSidebar } from '@/components/AppSidebar';
@@ -33,19 +35,9 @@ const Index = () => {
       case 'files':
         return <Files />;
       case 'databases':
-        return (
-          <div className="cyber-panel max-w-2xl mx-auto animate-fade-in-up">
-            <h2 className="text-3xl font-bold neon-text mb-6">Databases Section</h2>
-            <p className="text-muted-foreground">Раздел баз данных в разработке...</p>
-          </div>
-        );
+        return <Databases />;
       case 'tools':
-        return (
-          <div className="cyber-panel max-w-2xl mx-auto animate-fade-in-up">
-            <h2 className="text-3xl font-bold neon-text mb-6">Tools Section</h2>
-            <p className="text-muted-foreground">Раздел инструментов в разработке...</p>
-          </div>
-        );
+        return <Tools />;
       default:
         return <Dashboard />;
     }
