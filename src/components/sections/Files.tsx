@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileText, User, Building, Calendar, Shield, Eye, Lock } from 'lucide-react';
+import { FileText, User, Building, Calendar, Shield, Eye, Lock, File, Video, Download, Play, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -20,6 +20,17 @@ interface PersonFile {
   lastActivity: string;
   location: string;
   notes: string;
+}
+
+interface MediaFile {
+  id: string;
+  name: string;
+  type: 'document' | 'video' | 'image';
+  size: string;
+  uploadDate: string;
+  description: string;
+  url: string;
+  thumbnail?: string;
 }
 
 const privatFiles: PersonFile[] = [
@@ -112,8 +123,68 @@ const individualFiles: PersonFile[] = [
   }
 ];
 
+const mediaFiles: MediaFile[] = [
+  {
+    id: 'f1',
+    name: 'Секретный_протокол_операции_Феникс.pdf',
+    type: 'document',
+    size: '2.4 MB',
+    uploadDate: '2024-01-15',
+    description: 'Классифицированный документ по операции "Феникс"',
+    url: '/documents/phoenix_protocol.pdf'
+  },
+  {
+    id: 'f2',
+    name: 'Запись_допроса_субъекта_Alpha-7.mp4',
+    type: 'video',
+    size: '145.8 MB',
+    uploadDate: '2024-01-12',
+    description: 'Видеозапись допроса подозреваемого Alpha-7',
+    url: '/videos/interrogation_alpha7.mp4',
+    thumbnail: '/thumbnails/interrogation_thumb.jpg'
+  },
+  {
+    id: 'f3',
+    name: 'Снимки_объекта_с_дрона.zip',
+    type: 'image',
+    size: '89.2 MB',
+    uploadDate: '2024-01-10',
+    description: 'Аэрофотосъемка целевого объекта',
+    url: '/images/drone_footage.zip'
+  },
+  {
+    id: 'f4',
+    name: 'Финансовые_отчеты_Umbrella_Corp.xlsx',
+    type: 'document',
+    size: '5.7 MB',
+    uploadDate: '2024-01-08',
+    description: 'Анализ финансовых потоков Umbrella Corporation',
+    url: '/documents/umbrella_finances.xlsx'
+  },
+  {
+    id: 'f5',
+    name: 'Видео_наблюдения_склад_B-7.mp4',
+    type: 'video',
+    size: '298.4 MB',
+    uploadDate: '2024-01-05',
+    description: 'Записи видеонаблюдения со склада B-7',
+    url: '/videos/warehouse_surveillance.mp4',
+    thumbnail: '/thumbnails/warehouse_thumb.jpg'
+  },
+  {
+    id: 'f6',
+    name: 'Биометрические_данные_агентов.pdf',
+    type: 'document',
+    size: '1.8 MB',
+    uploadDate: '2024-01-03',
+    description: 'Сводка биометрических данных активных агентов',
+    url: '/documents/biometric_data.pdf'
+  }
+];
+
 export const Files = () => {
   const [selectedPerson, setSelectedPerson] = useState<PersonFile | null>(null);
+  const [selectedFile, setSelectedFile] = useState<MediaFile | null>(null);
 
   const getStatusBadge = (status: string) => {
     const variants = {
@@ -244,6 +315,123 @@ export const Files = () => {
     </Card>
   );
 
+  const getFileIcon = (type: string) => {
+    switch (type) {
+      case 'document':
+        return <File className="h-5 w-5 text-blue-400" />;
+      case 'video':
+        return <Video className="h-5 w-5 text-red-400" />;
+      case 'image':
+        return <ImageIcon className="h-5 w-5 text-green-400" />;
+      default:
+        return <File className="h-5 w-5 text-muted-foreground" />;
+    }
+  };
+
+  const FileCard = ({ file }: { file: MediaFile }) => (
+    <Card className="bg-muted/20 border-border/50 hover:bg-muted/30 transition-all duration-300">
+      <CardContent className="p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="p-2 rounded-lg bg-primary/20 border border-primary/30">
+              {getFileIcon(file.type)}
+            </div>
+            
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground truncate max-w-64">{file.name}</h3>
+              <p className="text-sm text-muted-foreground">{file.description}</p>
+              <div className="flex items-center gap-4 mt-1">
+                <span className="text-xs text-muted-foreground">{file.size}</span>
+                <span className="text-xs text-muted-foreground">
+                  {new Date(file.uploadDate).toLocaleDateString('ru-RU')}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {file.type === 'video' && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+                  >
+                    <Play className="h-3 w-3" />
+                    Воспроизвести
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="bg-background/95 backdrop-blur-lg border-border/50 max-w-4xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Video className="h-5 w-5 text-primary" />
+                      {file.name}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="aspect-video bg-black rounded-lg flex items-center justify-center">
+                    <video 
+                      controls 
+                      className="w-full h-full rounded-lg"
+                      poster={file.thumbnail}
+                    >
+                      <source src={file.url} type="video/mp4" />
+                      Ваш браузер не поддерживает видео.
+                    </video>
+                  </div>
+                  <div className="text-sm text-muted-foreground mt-2">
+                    {file.description}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
+            
+            {file.type === 'image' && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+                  >
+                    <Eye className="h-3 w-3" />
+                    Просмотр
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="bg-background/95 backdrop-blur-lg border-border/50 max-w-4xl">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <ImageIcon className="h-5 w-5 text-primary" />
+                      {file.name}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="bg-black rounded-lg p-4 flex items-center justify-center min-h-96">
+                    <div className="text-muted-foreground">
+                      Предварительный просмотр изображений
+                    </div>
+                  </div>
+                  <div className="text-sm text-muted-foreground mt-2">
+                    {file.description}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            )}
+
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="gap-2 border-primary/30 text-primary hover:bg-primary/20"
+              onClick={() => window.open(file.url, '_blank')}
+            >
+              <Download className="h-3 w-3" />
+              Скачать
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="cyber-panel animate-fade-in-up">
       <div className="flex items-center gap-3 mb-6">
@@ -253,23 +441,40 @@ export const Files = () => {
         <h2 className="text-3xl font-bold neon-text">Архив досье</h2>
       </div>
 
-      <Tabs defaultValue="private" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-muted/20 border border-border/50">
+      <Tabs defaultValue="media" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 bg-muted/20 border border-border/50">
+          <TabsTrigger 
+            value="media" 
+            className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary flex items-center gap-2"
+          >
+            <FileText className="h-4 w-4" />
+            Медиа файлы
+          </TabsTrigger>
           <TabsTrigger 
             value="private" 
             className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary flex items-center gap-2"
           >
             <Lock className="h-4 w-4" />
-            Приватные файлы
+            Приватные досье
           </TabsTrigger>
           <TabsTrigger 
             value="individual" 
             className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary flex items-center gap-2"
           >
             <User className="h-4 w-4" />
-            Индивидуальные файлы
+            Индивидуальные досье
           </TabsTrigger>
         </TabsList>
+        
+        <TabsContent value="media" className="space-y-3 mt-6">
+          <div className="flex items-center gap-2 mb-4">
+            <FileText className="h-4 w-4 text-primary" />
+            <span className="text-sm text-primary">Архив документов, видео и изображений</span>
+          </div>
+          {mediaFiles.map((file) => (
+            <FileCard key={file.id} file={file} />
+          ))}
+        </TabsContent>
         
         <TabsContent value="private" className="space-y-3 mt-6">
           <div className="flex items-center gap-2 mb-4">
