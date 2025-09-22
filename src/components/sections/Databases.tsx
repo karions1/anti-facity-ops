@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { 
   Database, 
   FileText, 
@@ -19,11 +21,46 @@ import {
   Clock,
   MapPin,
   DollarSign,
-  ArrowLeft
+  ArrowLeft,
+  Plus,
+  Building,
+  UserPlus,
+  Calendar,
+  Briefcase,
+  Gavel
 } from 'lucide-react';
 
 const Databases = () => {
   const [selectedDatabase, setSelectedDatabase] = useState<string | null>(null);
+  const [createdProfiles, setCreatedProfiles] = useState<any[]>([]);
+  const [showingInputs, setShowingInputs] = useState<{ type: string | null, firstName: string, lastName: string }>({
+    type: null,
+    firstName: '',
+    lastName: ''
+  });
+  const [selectedProfile, setSelectedProfile] = useState<any | null>(null);
+
+  const handleCreateProfile = (type: string) => {
+    if (showingInputs.firstName.trim() && showingInputs.lastName.trim()) {
+      const newProfile = {
+        id: Date.now(),
+        type,
+        firstName: showingInputs.firstName,
+        lastName: showingInputs.lastName,
+        photo: type === 'private' ? '/agent-profile-1.jpg' : '/ceo-profile-1.jpg',
+        details: {
+          dateOfBirth: type === 'private' ? '1985-03-15' : '1970-08-22',
+          placeOfBirth: type === 'private' ? 'Moscow, Russia' : 'London, UK',
+          mobileNumber: type === 'private' ? '+7-495-123-4567' : '+44-20-7946-0958',
+          passportNo: type === 'private' ? 'RF 12 34 567890' : 'UK 98 76 543210',
+          workPlace: type === 'private' ? 'Tech Solutions Ltd.' : 'Global Corp Industries',
+          criminalCases: type === 'private' ? 'Clean record' : 'Tax evasion investigation (2019)'
+        }
+      };
+      setCreatedProfiles(prev => [...prev, newProfile]);
+      setShowingInputs({ type: null, firstName: '', lastName: '' });
+    }
+  };
 
   const databases = [
     {
@@ -159,7 +196,170 @@ const Databases = () => {
     switch (selectedDatabase) {
       case 'personal':
         return (
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Creation Interface */}
+            <div className="grid grid-cols-2 gap-6 mb-8">
+              {/* Private Individual */}
+              <Card className="cyber-panel border-blue-500/30 bg-blue-500/5">
+                <CardContent className="p-6">
+                  {showingInputs.type === 'private' ? (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <UserPlus className="h-5 w-5 text-blue-400" />
+                        <h3 className="text-lg font-medium text-blue-400">Private Individual</h3>
+                      </div>
+                      <Input
+                        placeholder="First Name"
+                        value={showingInputs.firstName}
+                        onChange={(e) => setShowingInputs(prev => ({ ...prev, firstName: e.target.value }))}
+                        className="cyber-input"
+                      />
+                      <Input
+                        placeholder="Last Name"
+                        value={showingInputs.lastName}
+                        onChange={(e) => setShowingInputs(prev => ({ ...prev, lastName: e.target.value }))}
+                        className="cyber-input"
+                      />
+                      <div className="flex gap-2">
+                        <Button 
+                          onClick={() => handleCreateProfile('private')}
+                          className="flex-1 bg-blue-500/20 text-blue-400 border-blue-500/30 hover:bg-blue-500/30"
+                          disabled={!showingInputs.firstName.trim() || !showingInputs.lastName.trim()}
+                        >
+                          Create Profile
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          onClick={() => setShowingInputs({ type: null, firstName: '', lastName: '' })}
+                          className="border-muted-foreground/30"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
+                        <UserPlus className="h-8 w-8 text-blue-400" />
+                      </div>
+                      <h3 className="text-lg font-medium text-blue-400 mb-2">Private Individual</h3>
+                      <p className="text-sm text-muted-foreground mb-4">Add civilian target profile</p>
+                      <Button 
+                        onClick={() => setShowingInputs({ type: 'private', firstName: '', lastName: '' })}
+                        className="w-full bg-blue-500/20 text-blue-400 border-blue-500/30 hover:bg-blue-500/30"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Target
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* CEO Database */}
+              <Card className="cyber-panel border-yellow-500/30 bg-yellow-500/5">
+                <CardContent className="p-6">
+                  {showingInputs.type === 'ceo' ? (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Building className="h-5 w-5 text-yellow-400" />
+                        <h3 className="text-lg font-medium text-yellow-400">CEO Database</h3>
+                      </div>
+                      <Input
+                        placeholder="First Name"
+                        value={showingInputs.firstName}
+                        onChange={(e) => setShowingInputs(prev => ({ ...prev, firstName: e.target.value }))}
+                        className="cyber-input"
+                      />
+                      <Input
+                        placeholder="Last Name"
+                        value={showingInputs.lastName}
+                        onChange={(e) => setShowingInputs(prev => ({ ...prev, lastName: e.target.value }))}
+                        className="cyber-input"
+                      />
+                      <div className="flex gap-2">
+                        <Button 
+                          onClick={() => handleCreateProfile('ceo')}
+                          className="flex-1 bg-yellow-500/20 text-yellow-400 border-yellow-500/30 hover:bg-yellow-500/30"
+                          disabled={!showingInputs.firstName.trim() || !showingInputs.lastName.trim()}
+                        >
+                          Create Profile
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          onClick={() => setShowingInputs({ type: null, firstName: '', lastName: '' })}
+                          className="border-muted-foreground/30"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <div className="w-16 h-16 rounded-full bg-yellow-500/20 flex items-center justify-center mx-auto mb-4">
+                        <Building className="h-8 w-8 text-yellow-400" />
+                      </div>
+                      <h3 className="text-lg font-medium text-yellow-400 mb-2">CEO Database</h3>
+                      <p className="text-sm text-muted-foreground mb-4">Add corporate executive profile</p>
+                      <Button 
+                        onClick={() => setShowingInputs({ type: 'ceo', firstName: '', lastName: '' })}
+                        className="w-full bg-yellow-500/20 text-yellow-400 border-yellow-500/30 hover:bg-yellow-500/30"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Executive
+                      </Button>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Created Profiles */}
+            {createdProfiles.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-primary mb-4">Active Profiles</h3>
+                {createdProfiles.map((profile) => (
+                  <Card 
+                    key={profile.id} 
+                    className={`cyber-panel hover:border-primary/50 cursor-pointer transition-all ${
+                      profile.type === 'private' ? 'border-blue-500/30 bg-blue-500/5' : 'border-yellow-500/30 bg-yellow-500/5'
+                    }`}
+                    onClick={() => setSelectedProfile(profile)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-16 h-16 rounded-full ${
+                          profile.type === 'private' ? 'bg-blue-500/20' : 'bg-yellow-500/20'
+                        } flex items-center justify-center overflow-hidden`}>
+                          {profile.type === 'private' ? 
+                            <User className={`h-8 w-8 ${profile.type === 'private' ? 'text-blue-400' : 'text-yellow-400'}`} /> :
+                            <Building className={`h-8 w-8 ${profile.type === 'private' ? 'text-blue-400' : 'text-yellow-400'}`} />
+                          }
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-medium text-foreground text-xl">
+                            {profile.firstName} {profile.lastName}
+                          </h4>
+                          <p className={`text-sm ${profile.type === 'private' ? 'text-blue-400' : 'text-yellow-400'}`}>
+                            {profile.type === 'private' ? 'Private Individual' : 'Corporate Executive'}
+                          </p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                            <span className="text-xs text-green-400">Profile Active</span>
+                          </div>
+                        </div>
+                        <Button size="sm" variant="outline" className="flex items-center gap-2">
+                          <Eye className="h-4 w-4" />
+                          View Dossier
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+
+            {/* Default profiles */}
             {personalFiles.map((person) => (
               <Card key={person.id} className="cyber-panel hover:border-primary/50 cursor-pointer transition-all">
                 <CardContent className="p-6">
@@ -464,6 +664,140 @@ const Databases = () => {
           {renderDatabaseContent()}
         </div>
       )}
+
+      {/* Profile Detail Dialog */}
+      <Dialog open={selectedProfile !== null} onOpenChange={() => setSelectedProfile(null)}>
+        <DialogContent className="max-w-4xl cyber-panel bg-background/95 backdrop-blur-sm border-primary/30">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold neon-text flex items-center gap-3">
+              <Shield className="h-6 w-6 text-primary" />
+              Target Dossier - Classification: {selectedProfile?.type === 'private' ? 'CONFIDENTIAL' : 'TOP SECRET'}
+            </DialogTitle>
+          </DialogHeader>
+          
+          {selectedProfile && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+              {/* Photo Section */}
+              <div className="lg:col-span-1">
+                <div className="cyber-panel p-6 h-fit">
+                  <div className="aspect-[3/4] bg-gradient-to-b from-primary/20 to-background rounded-lg mb-4 flex items-center justify-center border border-primary/30">
+                    {selectedProfile.type === 'private' ? 
+                      <User className="h-24 w-24 text-primary" /> :
+                      <Building className="h-24 w-24 text-primary" />
+                    }
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
+                      {selectedProfile.firstName} {selectedProfile.lastName}
+                    </h3>
+                    <Badge className={`${
+                      selectedProfile.type === 'private' 
+                        ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' 
+                        : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
+                    }`}>
+                      {selectedProfile.type === 'private' ? 'Private Individual' : 'Corporate Executive'}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+
+              {/* Details Section */}
+              <div className="lg:col-span-2">
+                <div className="cyber-panel p-6">
+                  <h4 className="text-lg font-bold text-primary mb-6 flex items-center gap-2">
+                    <FileText className="h-5 w-5" />
+                    Personal Information
+                  </h4>
+                  
+                  <div className="space-y-4 max-h-96 overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <User className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">First Name:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.firstName}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <User className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Last Name:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.lastName}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Calendar className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Date of Birth:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.details.dateOfBirth}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Place of Birth:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.details.placeOfBirth}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Phone className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Mobile Number:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.details.mobileNumber}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CreditCard className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Passport No.:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.details.passportNo}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Briefcase className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Work Place:</span>
+                        </div>
+                        <p className="text-foreground font-mono">{selectedProfile.details.workPlace}</p>
+                      </div>
+                      
+                      <div className="cyber-panel p-4 bg-muted/10">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Gavel className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Criminal Cases:</span>
+                        </div>
+                        <p className={`font-mono ${
+                          selectedProfile.details.criminalCases === 'Clean record' 
+                            ? 'text-green-400' 
+                            : 'text-red-400'
+                        }`}>
+                          {selectedProfile.details.criminalCases}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 p-4 border border-red-500/30 bg-red-500/5 rounded-lg">
+                      <div className="flex items-center gap-2 mb-2">
+                        <AlertTriangle className="h-4 w-4 text-red-400" />
+                        <span className="text-sm font-medium text-red-400">Security Notice:</span>
+                      </div>
+                      <p className="text-sm text-red-400">
+                        This information is classified. Unauthorized access or distribution is strictly prohibited.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
