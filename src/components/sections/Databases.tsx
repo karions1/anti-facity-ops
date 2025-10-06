@@ -39,6 +39,7 @@ const Databases = () => {
     lastName: ''
   });
   const [selectedProfile, setSelectedProfile] = useState<any | null>(null);
+  const [vehicleSearch, setVehicleSearch] = useState('');
 
   const handleCreateProfile = (type: string) => {
     if (showingInputs.firstName.trim() && showingInputs.lastName.trim()) {
@@ -392,34 +393,128 @@ const Databases = () => {
 
       case 'car':
         return (
-          <div className="space-y-4">
-            {carRegistry.map((car) => (
-              <Card key={car.id} className="cyber-panel hover:border-green-500/50 cursor-pointer transition-all">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                        <Car className="h-6 w-6 text-green-400" />
+          <div className="space-y-6">
+            {/* Vehicle Search Input */}
+            <Card className="cyber-panel border-green-500/30 bg-green-500/5">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Car className="h-5 w-5 text-green-400" />
+                  <h3 className="text-lg font-medium text-green-400">Vehicle Identification System</h3>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">Enter license plate number to access vehicle records</p>
+                <div className="relative">
+                  <Input
+                    placeholder="Enter license plate number..."
+                    value={vehicleSearch}
+                    onChange={(e) => setVehicleSearch(e.target.value.toUpperCase())}
+                    className="cyber-input text-lg font-mono tracking-wider pl-4 pr-12 h-12 bg-background/50 border-green-500/30 focus:border-green-400"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Vehicle Information Card */}
+            {vehicleSearch && (
+              <Card className="cyber-panel border-green-500/30 bg-gradient-to-br from-green-500/5 to-background">
+                <CardContent className="p-0">
+                  <div className="grid md:grid-cols-[300px_1fr] gap-6 p-6">
+                    {/* Vehicle Photo */}
+                    <div className="relative">
+                      <div className="aspect-square rounded-lg overflow-hidden border-2 border-green-500/30 bg-background/50">
+                        <img 
+                          src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&h=400&fit=crop" 
+                          alt="Mercedes G55 AMG"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-lg">{car.plate}</h4>
-                        <p className="text-sm text-muted-foreground">{car.model}</p>
-                        <p className="text-xs text-muted-foreground mt-1">Owner: {car.owner} • Last check: {car.lastCheck}</p>
+                      <div className="absolute top-3 right-3">
+                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30 backdrop-blur-sm">
+                          ACTIVE
+                        </Badge>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <Badge className={`mb-2 ${car.status === 'Flagged' ? 'bg-red-500/20 text-red-400 border-red-500/30' : 'bg-green-500/20 text-green-400 border-green-500/30'}`}>
-                        {car.status}
-                      </Badge>
-                      <Button size="sm" variant="outline" className="flex items-center gap-2">
-                        <Eye className="h-4 w-4" />
-                        Details
-                      </Button>
+
+                    {/* Vehicle Details */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                          <Car className="h-5 w-5 text-green-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-green-400">VEHICLE RECORD FOUND</h3>
+                          <p className="text-sm text-muted-foreground">Last updated: 20.12.2016</p>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <Activity className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Specification Model</p>
+                              <p className="text-foreground font-medium">2015 Mercedes-Benz G 55 AMG Compressor</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <Shield className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Vehicle Identification Number</p>
+                              <p className="text-foreground font-mono font-medium">WDB4632701X164678</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <MapPin className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Country of Registration</p>
+                              <p className="text-foreground font-medium">Russia</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <CreditCard className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">License Plate</p>
+                              <p className="text-foreground font-mono font-bold text-lg">STALIN</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <Calendar className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Date of Last Registration</p>
+                              <p className="text-foreground font-medium">20.12.2016</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="cyber-panel border-green-500/20 bg-background/30 p-4">
+                          <div className="flex items-start gap-3">
+                            <User className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Owner</p>
+                              <p className="text-foreground font-medium">Vladimir Pupkin</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            )}
           </div>
         );
 
